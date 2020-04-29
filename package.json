@@ -1,0 +1,32 @@
+{
+    "name": "app-movil",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "bcrypt": "^4.0.1",
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.24.0",
+        "mysql": "^2.18.1",
+        "simple-encryptor": "^3.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.3"
+    },
+    "scripts": {
+        "server": "npx nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/laft0303/app-movil.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/laft0303/app-movil.git/issues"
+    },
+    "homepage": "https://github.com/laft0303/app-movil.git#readme"
+}
