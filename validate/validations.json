@@ -11,5 +11,28 @@
         "required": {
             "name": "nombre"
         }
+    },
+    "profile": {
+        "allowed": ["name", "description", "status"],
+        "required": {
+            "name": "nombre",
+            "description": "descripción"
+        }
+    },
+
+    "escuelas": {
+        "allowed": ["nombre", "direccion", "localidad", "telefono", "estado"],
+        "required": {
+            "nombre": "nombre"
+        }
+    },
+    "prestadores": {
+        "allowed": ["nombre", "ciudad", "correo", "direccion", "telefono", "estado"],
+        "required": {
+            "nombre": "nombre",
+            "ciudad": "ciudad",
+            "correo": "correo",
+            "direccion": "dirección"
+        }
     }
 }

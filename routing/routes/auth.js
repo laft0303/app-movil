@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const express = require('express')
 const router = express.Router()
 
+
 const DB = require('../../db/db')
 const jwt = require('../../jwt/jwt')
 const validator = require('../../validate/validator')
@@ -9,7 +10,7 @@ const validator = require('../../validate/validator')
 router
     .post('/auth', async(req, res) => {
         try {
-            const data = validator('auth').cleanData(req.body)
+            const data = validator('auth').cleanData(req.body) //valida el postman y cleanData(req.body) valida ese proceso y limpia los datos
             const errors = validator('auth').isValid(data)
             if (errors) {
                 res.json({ status: 'error', error: errors })

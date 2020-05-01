@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const DB = require('../../db/db')
-const db = new DB('BRANDS')
+const db = new DB('PRESTADORES_DE_SALUD')
 const validator = require('../../validate/validator')
 const jwt = require('../../jwt/jwt')
 
@@ -10,9 +10,8 @@ const refreshToken = (user, res) => {
     const token = jwt.createToken(user);
     res.setHeader('Authorization', `Bearer ${token}`)
 }
-
 router
-    .get('/brands', async(req, res) => {
+    .get('/prestadores', async(req, res) => {
         try {
             const data = await db.getAll()
             res.json(data)
@@ -20,7 +19,7 @@ router
             res.json({ status: 'error', error })
         }
     })
-    .get('/brands/:id', async(req, res) => {
+    .get('/prestadores/:id', async(req, res) => {
         try {
             const { params: { id } } = req
             const [data] = await db.getOne(id)
@@ -29,11 +28,11 @@ router
             res.json({ status: 'error', error })
         }
     })
-    .post('/brands', jwt.isAuth, async(req, res) => {
+    .post('/prestadores', jwt.isAuth, async(req, res) => {
         try {
             refreshToken(req.body.user, res)
-            const data = validator('brand').cleanData(req.body)
-            const errors = validator('brand').isValid(data)
+            const data = validator('prestadores').cleanData(req.body)
+            const errors = validator('prestadores').isValid(data)
             if (errors) {
                 res.json({ status: 'error', error: errors })
             } else {
@@ -44,11 +43,11 @@ router
             res.json({ status: 'error', error })
         }
     })
-    .put('/brands/:id', async(req, res) => {
+    .put('/prestadores/:id', async(req, res) => {
         try {
             const { params: { id } } = req
-            const data = validator('brand').cleanData(req.body)
-            const errors = validator('brand').isValid(data)
+            const data = validator('prestadores').cleanData(req.body)
+            const errors = validator('prestadores').isValid(data)
             if (errors) {
                 res.json({ status: 'error', error: errors })
             } else {
@@ -59,7 +58,7 @@ router
             res.json({ status: 'error', error })
         }
     })
-    .delete('/brands/:id', async(req, res) => {
+    .delete('/prestadores/:id', async(req, res) => {
         try {
             const { params: { id } } = req
             const response = await db.destroy(id)
