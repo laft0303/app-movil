@@ -24,13 +24,13 @@ module.exports = ({
             if (!authorization) {
                 res.status(403).json({ status: 'error', error: 'Acceso no permitido' })
             } else {
-                const token = authorization.split(' ').pop(); //cuando caduca el token
-                const payload = jwt.verify(token, process.env.JWT_SESSION)
+                const token = authorization.split(' ').pop(); //cuando caduca el token y parte la cadena en partes  1.Split (1.bearer y 2.JWT) y el 2.Pop(coge el JWT para escoger la ultima posicion que es JWT)
+                const payload = jwt.verify(token, process.env.JWT_SESSION) //verify el payload para mirar el acceso segun su caducacion o si no tiene permiso
                 if (!payload || payload && payload.iat < moment().unix()) {
                     res.status(401).json({ status: 'error', error: 'Acceso no permitido' })
                 } else {
                     req.body.user = encryptor.decrypt(payload.sub)
-                    next()
+                    next() //sique el proceso si todo esta correcto
                 }
             }
         } catch (error) {

@@ -28,7 +28,7 @@ router
             res.json({ status: 'error', error })
         }
     })
-    .post('/escuelas', async(req, res) => {
+    .post('/escuelas', jwt.isAuth, async(req, res) => {
         try {
             refreshToken(req.body.user, res)
             const data = validator('escuelas').cleanData(req.body)

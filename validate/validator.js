@@ -1,8 +1,8 @@
 const validations = require('./validations.json')
 
 module.exports = (model => {
-    const allowed = validations[model].allowed
-    const required = validations[model].required
+    const allowed = validations[model].allowed //datos permitidos 
+    const required = validations[model].required //datos requeridos que hay en los permitidos
     return {
         cleanData: (data) => {
             for (const key in data) {
