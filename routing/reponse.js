@@ -6,6 +6,6 @@ module.exports = ({
         return res.status(status).json({...error })
     },
     error: (res, error, status = 404) => {
-        return res.status(status).json({ error })
+        return res.status(status).json({...error }) // desde aqui llegan los mensajes en nuestro aplicativo
     }
 })

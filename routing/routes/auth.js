@@ -10,7 +10,7 @@ const Response = require('../reponse')
 
 router
     .post('/auth', async(req, res) => {
-        const error = { error: 'Datos de acceso incorrectos' }
+        const error = { error: 'Datos de acceso incorrectos' } //aparece el mensaje de error en el logueo
         try {
             const data = validator('auth').cleanData(req.body)
             const errors = validator('auth').isValid(data)

@@ -1,23 +1,25 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const fileUpload = require('express-fileupload')
-const path = require('path')
+    //const fileUpload = require('express-fileupload')
+    //const path = require('path')
+const cors = require('cors')
 
 const port = 3001
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ extended: true }))
-app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 } })) //cuanto puedo guardar
+    //app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 } })) //cuanto puedo guardar
+app.use(cors({ exposedHeadders: ['Autorization'] }))
 
 app.get('/', (req, res) => {
     res.json({ status: 'success' })
 })
 
-const publicPath = path.resolve(__dirname, 'public')
-app.use(express.static(publicPath))
+//const publicPath = path.resolve(__dirname, 'public')
+//app.use(express.static(publicPath))
 
-app.post('/upload-images', async(req, res) => {
+/* app.post('/upload-images', async(req, res) => { // '/upload-images' es la ruta para buscar 
     try {
         const file = req.files
         const fileAcepted = ['image/png']
@@ -25,7 +27,7 @@ app.post('/upload-images', async(req, res) => {
         if (fileAcepted.includes(file.image.mimetype)) {
             const fileName = `${file.image.name.toLowerCase().replace(/[^a-z0-9-.]/g, '')}` //lowercase(todo en minuscula)
             const pathFile = path.resolve(publicPath, 'images', fileName)
-            await file.image.mv(pathFile)
+            await file.image.mv(pathFile) // cuando creo await debo escribir async
             res.status(200).json({ status: 'ok', imageName: fileName }) //const pathUpload = path.resolve(pathFile, fileName) //si crea mas carpetas
         } else {
             res.status(400).json({ status: 'error', message: 'tipo de archivo no valido' })
@@ -36,7 +38,7 @@ app.post('/upload-images', async(req, res) => {
     }
 
 })
-
+ */
 const routes = require('./routing/routes')
 app.use('/api/v1.0/', routes)
 
