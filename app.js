@@ -10,8 +10,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ extended: true }))
     //app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 } })) //cuanto puedo guardar
-app.use(cors({ exposedHeadders: ['Autorization'] }))
-
+app.use(cors({ exposedHeaders: ['Authorization'] }))
 app.get('/', (req, res) => {
     res.json({ status: 'success' })
 })
